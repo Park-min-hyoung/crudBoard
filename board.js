@@ -13,11 +13,14 @@ let stickerLocalSave = () => {
 
 let removeSticker = (event) => {
   const rmSticker = event.target.parentElement.parentElement;
+  stickers = stickers.filter((item) => item.id !== parseInt(rmSticker.id));
+  stickerLocalSave(stickers);
   rmSticker.remove();
 };
 
 let makeSticker = (sticker) => {
   stickerDiv = document.createElement("div");
+  stickerDiv.id = sticker.id;
   stickerDiv.classList.add("board-container__sticker");
 
   titleDiv = document.createElement("div");
@@ -46,6 +49,7 @@ let receiveValue = (event) => {
   const stickerObj = {
     title: stickerTitle.value,
     content: stickerContent.value,
+    id: Date.now(),
   };
 
   stickers.push(stickerObj);
