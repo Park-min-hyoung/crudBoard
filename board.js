@@ -58,6 +58,6 @@ stickerForm.addEventListener("submit", receiveValue);
 // by 민형, program start_220512
 const bringLocalSticker = localStorage.getItem(STIKER_KEY);
 if (bringLocalSticker !== null) {
-  const parsedLocalSticker = JSON.parse(bringLocalSticker);
-  parsedLocalSticker.forEach(makeSticker);
+  stickers = JSON.parse(bringLocalSticker);
+  stickers.forEach(makeSticker);
 }
