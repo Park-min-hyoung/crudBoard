@@ -11,6 +11,13 @@ let stickerLocalSave = () => {
   localStorage.setItem(STIKER_KEY, JSON.stringify(stickers));
 };
 
+let allRemoveSticker = () => {
+  const stickerContainer = document.querySelector(".board-container");
+  while (stickerContainer.hasChildNodes()) {
+    stickerContainer.removeChild(stickerContainer.firstChild);
+  }
+};
+
 let removeSticker = (event) => {
   const rmSticker = event.target.parentElement.parentElement;
   stickers = stickers.filter((item) => item.id !== parseInt(rmSticker.id));
@@ -18,26 +25,85 @@ let removeSticker = (event) => {
   rmSticker.remove();
 };
 
-let makeSticker = (sticker) => {
-  stickerDiv = document.createElement("div");
-  stickerDiv.id = sticker.id;
-  stickerDiv.classList.add("board-container__sticker");
+let makeSticker = (toMakeSticker, stickerInfo) => {
+  toMakeSticker.insertAdjacentHTML(
+    "beforeend",
+    `<div class="sticker-cotainer__title">${stickerInfo.title}</div>`
+  );
 
-  titleDiv = document.createElement("div");
-  titleDiv.innerText = sticker.title;
-  contentDiv = document.createElement("div");
-  contentDiv.innerText = sticker.content;
-  closeSpan = document.createElement("span");
-  closeSpan.insertAdjacentHTML(
+  const contentDiv = document.createElement("div");
+  contentDiv.innerText = stickerInfo.content;
+  contentDiv.classList.add("sticker-cotainer__content");
+
+  const updateButton = document.createElement("button");
+  updateButton.innerText = "내용 수정";
+  updateButton.classList.add("sticker-cotainer__update-btn");
+
+  const updateTextArea = document.createElement("textarea");
+  updateTextArea.placeholder = "수정할 내용을 입력해주세요";
+  updateTextArea.rows = 10;
+  updateTextArea.cols = 40;
+  updateTextArea.classList.add("sticker-cotainer__update-text", "hidden");
+
+  const confirmButton = document.createElement("button");
+  confirmButton.innerText = "확인";
+  confirmButton.classList.add("sticker-cotainer__confirm-btn", "hidden");
+
+  const cancelButton = document.createElement("button");
+  cancelButton.innerText = "취소";
+  cancelButton.classList.add("sticker-cotainer__cancel-btn", "hidden");
+
+  const deleteSpan = document.createElement("span");
+  deleteSpan.insertAdjacentHTML(
     "beforeend",
     `<i class="fa-solid fa-xmark fa-2x"></i>`
   );
-  closeSpan.addEventListener("click", removeSticker);
 
-  stickerDiv.append(titleDiv);
-  stickerDiv.append(contentDiv);
-  stickerDiv.append(closeSpan);
-  stickerBoard.append(stickerDiv);
+  toMakeSticker.append(contentDiv);
+  toMakeSticker.append(updateButton);
+  toMakeSticker.append(updateTextArea);
+  toMakeSticker.append(confirmButton);
+  toMakeSticker.append(cancelButton);
+  toMakeSticker.append(deleteSpan);
+
+  let elementHiddenModify = () => {
+    contentDiv.classList.toggle("hidden");
+    updateButton.classList.toggle("hidden");
+    updateTextArea.classList.toggle("hidden");
+    confirmButton.classList.toggle("hidden");
+    cancelButton.classList.toggle("hidden");
+  };
+
+  updateButton.addEventListener("click", elementHiddenModify);
+  confirmButton.onclick = ({ target }) => {
+    updateDiv = target.parentElement;
+
+    // by 민형, 모든 스티커 삭제_220513
+    allRemoveSticker();
+    for (let item of stickers) {
+      if (item.id === parseInt(updateDiv.id)) {
+        item.content = updateTextArea.value;
+        stickerLocalSave();
+        elementHiddenModify();
+        // by 민형, 스티커 내용 수정 후 다시 스티커 붙이기_220513
+        stickers.forEach(attachSticker);
+        break;
+      }
+    }
+  };
+  cancelButton.addEventListener("click", elementHiddenModify);
+  deleteSpan.addEventListener("click", removeSticker);
+
+  return toMakeSticker;
+};
+
+let attachSticker = (stickerInfo) => {
+  const stickerDiv = document.createElement("div");
+  stickerDiv.id = stickerInfo.id;
+  stickerDiv.classList.add("board-container__sticker");
+
+  const madeSticker = makeSticker(stickerDiv, stickerInfo);
+  stickerBoard.append(madeSticker);
 
   stickerTitle.value = "";
   stickerContent.value = "";
@@ -54,7 +120,7 @@ let receiveValue = (event) => {
 
   stickers.push(stickerObj);
   stickerLocalSave(stickerObj);
-  makeSticker(stickerObj);
+  attachSticker(stickerObj);
 };
 
 stickerForm.addEventListener("submit", receiveValue);
@@ -63,5 +129,5 @@ stickerForm.addEventListener("submit", receiveValue);
 const bringLocalSticker = localStorage.getItem(STIKER_KEY);
 if (bringLocalSticker !== null) {
   stickers = JSON.parse(bringLocalSticker);
-  stickers.forEach(makeSticker);
+  stickers.forEach(attachSticker);
 }
