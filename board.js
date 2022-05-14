@@ -11,20 +11,24 @@ let stickerLocalSave = () => {
   localStorage.setItem(STIKER_KEY, JSON.stringify(stickers));
 };
 
+// by 민형, 게시판에 있는 모든 스티커 삭제_220514
 let allRemoveSticker = () => {
-  const stickerContainer = document.querySelector(".board-container");
-  while (stickerContainer.hasChildNodes()) {
-    stickerContainer.removeChild(stickerContainer.firstChild);
+  while (stickerBoard.hasChildNodes()) {
+    stickerBoard.removeChild(stickerBoard.firstChild);
   }
 };
 
+// by 민형, x버튼 누르면 스티커 삭제_220514
 let removeSticker = (event) => {
   const rmSticker = event.target.parentElement.parentElement;
-  stickers = stickers.filter((item) => item.id !== parseInt(rmSticker.id));
+  stickers = stickers.filter(
+    (sticker) => sticker.id !== parseInt(rmSticker.id)
+  );
   stickerLocalSave(stickers);
   rmSticker.remove();
 };
 
+// by 민형, div 태그(빈 스티커)에 항목들 생성 및 기능 추가_220514
 let makeSticker = (toMakeSticker, stickerInfo) => {
   toMakeSticker.insertAdjacentHTML(
     "beforeend",
@@ -74,15 +78,14 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
     cancelButton.classList.toggle("hidden");
   };
 
-  updateButton.addEventListener("click", elementHiddenModify);
-  confirmButton.onclick = ({ target }) => {
-    updateDiv = target.parentElement;
+  let updateStickerContent = ({ target }) => {
+    updateStickerDiv = target.parentElement;
 
     // by 민형, 모든 스티커 삭제_220513
     allRemoveSticker();
-    for (let item of stickers) {
-      if (item.id === parseInt(updateDiv.id)) {
-        item.content = updateTextArea.value;
+    for (let sticker of stickers) {
+      if (sticker.id === parseInt(updateStickerDiv.id)) {
+        sticker.content = updateTextArea.value;
         stickerLocalSave();
         elementHiddenModify();
         // by 민형, 스티커 내용 수정 후 다시 스티커 붙이기_220513
@@ -91,6 +94,9 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
       }
     }
   };
+
+  updateButton.addEventListener("click", elementHiddenModify);
+  confirmButton.addEventListener("click", updateStickerContent);
   cancelButton.addEventListener("click", elementHiddenModify);
   deleteSpan.addEventListener("click", removeSticker);
 
@@ -104,9 +110,6 @@ let attachSticker = (stickerInfo) => {
 
   const madeSticker = makeSticker(stickerDiv, stickerInfo);
   stickerBoard.append(madeSticker);
-
-  stickerTitle.value = "";
-  stickerContent.value = "";
 };
 
 // by 민형, 사용자가 작성한 내용을 받아 처리_220512
@@ -117,6 +120,8 @@ let receiveValue = (event) => {
     content: stickerContent.value,
     id: Date.now(),
   };
+  stickerTitle.value = "";
+  stickerContent.value = "";
 
   stickers.push(stickerObj);
   stickerLocalSave(stickerObj);
