@@ -11,15 +11,26 @@ let userLocalSave = () => {
   localStorage.setItem(USER_KEY, JSON.stringify(userName));
 };
 
-let greetingRender = (event) => {
-  event.preventDefault();
-  userName = userNameInput.value;
+let greetingRender = () => {
   gretting.innerText = `${userName}님 환영합니다~~~`;
-
-  userLocalSave();
 
   userNameInput.classList.add("hidden");
   loginButton.classList.add("hidden");
 };
 
-userForm.addEventListener("submit", greetingRender);
+let receiveName = (event) => {
+  event.preventDefault();
+  userName = userNameInput.value;
+
+  greetingRender();
+  userLocalSave();
+};
+
+userForm.addEventListener("submit", receiveName);
+
+// by 민형, program 시작_220515
+const bringLocalUser = localStorage.getItem(USER_KEY);
+if (bringLocalUser !== null) {
+  userName = JSON.parse(bringLocalUser);
+  greetingRender();
+}
