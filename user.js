@@ -2,10 +2,18 @@ const userForm = document.querySelector("#user-form");
 const userNameInput = document.querySelector("#user-form input[type=text]");
 const loginButton = document.querySelector("#user-form button");
 const gretting = document.querySelector(".greeting");
+const stickerFormDisplay = document.querySelector("#board-form");
+const stickerBoardDisplay = document.querySelector(".board-container");
 
 let userName;
 
 const USER_KEY = "user";
+
+// by 민형, 로그인 유무에 따라 board 정보 랜더링_220515
+let boardDisplay = () => {
+  stickerFormDisplay.classList.toggle("hidden");
+  stickerBoardDisplay.classList.toggle("hidden");
+};
 
 let logOut = ({ target }) => {
   // by 민형, 여기서 target은 로그아웃 버튼_220515
@@ -15,6 +23,7 @@ let logOut = ({ target }) => {
   gretting.innerText = "";
   userNameInput.classList.remove("hidden");
   loginButton.classList.remove("hidden");
+  boardDisplay();
 };
 
 let logoutButtonMake = () => {
@@ -35,12 +44,14 @@ let greetingRender = () => {
   loginButton.classList.add("hidden");
 };
 
+// by 민형, 로그인 할 떄_220515
 let receiveName = (event) => {
   event.preventDefault();
   userName = userNameInput.value;
 
   logoutButtonMake();
   greetingRender();
+  boardDisplay();
   userLocalSave();
 };
 
@@ -52,4 +63,5 @@ if (bringLocalUser !== null) {
   userName = JSON.parse(bringLocalUser);
   logoutButtonMake();
   greetingRender();
+  boardDisplay();
 }
