@@ -9,6 +9,18 @@
     <title>crudBoard</title>
   </head>
   <body>
+    <form id="user-form">
+      <input
+        type="text"
+        required
+        maxlength="10"
+        placeholder="이름을 입력해 주세요!"
+      />
+      <button type="submit">로그인</button>
+    </form>
+
+    <div class="greeting"></div>
+
     <form id="board-form">
       <input
         type="text"
@@ -31,6 +43,7 @@
       src="https://kit.fontawesome.com/a59a29274e.js"
       crossorigin="anonymous"
     ></script>
+    <script src="user.js"></script>
     <script src="board.js"></script>
   </body>
 </html>
