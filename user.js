@@ -10,6 +10,7 @@ const USER_KEY = "user";
 let logOut = ({ target }) => {
   // by 민형, 여기서 target은 로그아웃 버튼_220515
   target.remove();
+  localStorage.removeItem(USER_KEY);
 
   gretting.innerText = "";
   userNameInput.classList.remove("hidden");
