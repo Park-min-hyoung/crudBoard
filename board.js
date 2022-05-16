@@ -2,8 +2,12 @@ const stickerForm = document.querySelector("#board-form");
 const stickerTitle = document.querySelector("#board-form input[type=text]");
 const stickerContent = document.querySelector("#board-form textarea");
 const stickerBoard = document.querySelector(".board-container");
+const searchForm = document.querySelector("#search-form");
+const searchContent = document.querySelector("#search-form input[type=text]");
+const noSearchNotice = document.querySelector("#no-search");
 
 const STIKER_KEY = "sticker";
+const HIDDEN = "hidden";
 
 let stickers = [];
 
@@ -47,15 +51,15 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
   updateTextArea.placeholder = "수정할 내용을 입력해주세요";
   updateTextArea.rows = 10;
   updateTextArea.cols = 40;
-  updateTextArea.classList.add("sticker-cotainer__update-text", "hidden");
+  updateTextArea.classList.add("sticker-cotainer__update-text", HIDDEN);
 
   const confirmButton = document.createElement("button");
   confirmButton.innerText = "확인";
-  confirmButton.classList.add("sticker-cotainer__confirm-btn", "hidden");
+  confirmButton.classList.add("sticker-cotainer__confirm-btn", HIDDEN);
 
   const cancelButton = document.createElement("button");
   cancelButton.innerText = "취소";
-  cancelButton.classList.add("sticker-cotainer__cancel-btn", "hidden");
+  cancelButton.classList.add("sticker-cotainer__cancel-btn", HIDDEN);
 
   const deleteSpan = document.createElement("span");
   deleteSpan.insertAdjacentHTML(
@@ -71,11 +75,11 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
   toMakeSticker.append(deleteSpan);
 
   let elementHiddenModify = () => {
-    contentDiv.classList.toggle("hidden");
-    updateButton.classList.toggle("hidden");
-    updateTextArea.classList.toggle("hidden");
-    confirmButton.classList.toggle("hidden");
-    cancelButton.classList.toggle("hidden");
+    contentDiv.classList.toggle(HIDDEN);
+    updateButton.classList.toggle(HIDDEN);
+    updateTextArea.classList.toggle(HIDDEN);
+    confirmButton.classList.toggle(HIDDEN);
+    cancelButton.classList.toggle(HIDDEN);
   };
 
   let updateStickerContent = ({ target }) => {
@@ -128,7 +132,30 @@ let receiveValue = (event) => {
   attachSticker(stickerObj);
 };
 
+let searchSticker = (event) => {
+  event.preventDefault();
+  // by 민형, 검색 시에 게시물 작성 폼 제거_220516
+  stickerForm.classList.add("hidden");
+  const findStickerContent = searchContent.value;
+  searchContent.value = "";
+
+  searchStickerArr = stickers.filter(
+    (sticker) =>
+      sticker.content.includes(findStickerContent) ||
+      sticker.title.includes(findStickerContent)
+  );
+  allRemoveSticker();
+  // by 민형, 사용자가 입력한 정보가 포함된 스티거가 한개라도 있다면_220516
+  if (searchStickerArr.length > 0) {
+    noSearchNotice.classList.add(HIDDEN);
+    searchStickerArr.forEach(attachSticker);
+  } else {
+    noSearchNotice.classList.remove(HIDDEN);
+  }
+};
+
 stickerForm.addEventListener("submit", receiveValue);
+searchForm.addEventListener("submit", searchSticker);
 
 // by 민형, program start_220512
 const bringLocalSticker = localStorage.getItem(STIKER_KEY);

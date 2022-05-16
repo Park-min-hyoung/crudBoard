@@ -18,7 +18,6 @@
       />
       <button type="submit">로그인</button>
     </form>
-
     <div class="greeting"></div>
 
     <form id="board-form" class="hidden">
@@ -36,8 +35,20 @@
       ></textarea>
       <button type="submit">작성</button>
     </form>
-
     <div class="board-container hidden"></div>
+
+    <div id="no-search" class="hidden">
+      검색 내용과 일치하는 스티커를 찾지 못했습니다..
+    </div>
+    <form id="search-form">
+      <input
+        required
+        type="text"
+        size="40"
+        placeholder="검색할 스티커의 제목 및 내용을 입력해주세요!"
+      />
+      <button type="submit">검색</button>
+    </form>
 
     <script
       src="https://kit.fontawesome.com/a59a29274e.js"
