@@ -5,6 +5,7 @@ const stickerBoard = document.querySelector(".board-container");
 const searchForm = document.querySelector("#search-form");
 const searchContent = document.querySelector("#search-form input[type=text]");
 const noSearchNotice = document.querySelector("#no-search");
+const stickerUserName = JSON.parse(localStorage.getItem("user"));
 
 const STIKER_KEY = "sticker";
 const HIDDEN = "hidden";
@@ -36,7 +37,10 @@ let removeSticker = (event) => {
 let makeSticker = (toMakeSticker, stickerInfo) => {
   toMakeSticker.insertAdjacentHTML(
     "beforeend",
-    `<div class="sticker-cotainer__title">${stickerInfo.title}</div>`
+    `
+      <div class="sticker-cotainer__user">${stickerUserName}</div>
+      <div class="sticker-cotainer__title">${stickerInfo.title}</div>
+    `
   );
 
   const contentDiv = document.createElement("div");
