@@ -1,4 +1,5 @@
 const userForm = document.querySelector("#user-form");
+const userLoginDiv = document.querySelector("#user-form .user-login");
 const userNameInput = document.querySelector("#user-form input[type=text]");
 const loginButton = document.querySelector("#user-form button");
 const gretting = document.querySelector(".greeting");
@@ -21,8 +22,9 @@ let logOut = ({ target }) => {
   localStorage.removeItem(USER_KEY);
 
   gretting.innerText = "";
-  userNameInput.classList.remove("hidden");
-  loginButton.classList.remove("hidden");
+  userNameInput.value = "";
+  userLoginDiv.classList.remove("hidden");
+
   boardDisplay();
 };
 
@@ -40,8 +42,7 @@ let userLocalSave = () => {
 let greetingRender = () => {
   gretting.innerText = `${userName}님 환영합니다~~~`;
 
-  userNameInput.classList.add("hidden");
-  loginButton.classList.add("hidden");
+  userLoginDiv.classList.add("hidden");
 };
 
 // by 민형, 로그인 할 떄_220515
