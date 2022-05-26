@@ -12,7 +12,6 @@ const USER_KEY = "user";
 
 // by 민형, 로그인 유무에 따라 board 정보 랜더링_220515
 let boardDisplay = () => {
-  stickerFormDisplay.classList.toggle("hidden");
   stickerBoardDisplay.classList.toggle("hidden");
   // by 민형, board.js의 searchForm 변수 사용_220526
   searchForm.classList.toggle("hidden");
@@ -26,6 +25,7 @@ let logOut = ({ target }) => {
   gretting.innerText = "";
   userNameInput.value = "";
   userLoginDiv.classList.remove("hidden");
+  stickerFormDisplay.classList.add("hidden");
 
   boardDisplay();
 };
@@ -51,6 +51,7 @@ let greetingRender = () => {
 let receiveName = (event) => {
   event.preventDefault();
   userName = userNameInput.value;
+  stickerFormDisplay.classList.remove("hidden");
 
   logoutButtonMake();
   greetingRender();
