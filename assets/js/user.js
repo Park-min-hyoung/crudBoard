@@ -14,6 +14,8 @@ const USER_KEY = "user";
 let boardDisplay = () => {
   stickerFormDisplay.classList.toggle("hidden");
   stickerBoardDisplay.classList.toggle("hidden");
+  // by 민형, board.js의 searchForm 변수 사용_220526
+  searchForm.classList.toggle("hidden");
 };
 
 let logOut = ({ target }) => {
