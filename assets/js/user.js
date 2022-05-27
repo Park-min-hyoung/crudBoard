@@ -5,6 +5,7 @@ const loginButton = document.querySelector("#user-form button");
 const gretting = document.querySelector(".greeting");
 const stickerFormDisplay = document.querySelector("#board-form");
 const stickerBoardDisplay = document.querySelector(".board-container");
+const searchFormDisplay = document.querySelector("#search-form");
 
 let userName;
 
@@ -14,7 +15,7 @@ const USER_KEY = "user";
 let boardDisplay = () => {
   stickerBoardDisplay.classList.toggle("hidden");
   // by 민형, board.js의 searchForm 변수 사용_220526
-  searchForm.classList.toggle("hidden");
+  searchFormDisplay.classList.toggle("hidden");
 };
 
 let logOut = ({ target }) => {
