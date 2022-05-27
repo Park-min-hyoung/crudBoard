@@ -108,7 +108,10 @@
 .user-logout__btn {
   width: 100%;
   padding: 10px;
-  text-align: right;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  background-color: white;
 }
 
 .user-logout__btn button {
@@ -120,4 +123,9 @@
 
 .user-logout__btn button i {
   margin-right: 5px;
+}
+
+.greeting {
+  margin-right: 25px;
+  font-size: 22px;
 }

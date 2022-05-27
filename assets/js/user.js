@@ -24,7 +24,6 @@ let logOut = ({ target }) => {
   target.remove();
   localStorage.removeItem(USER_KEY);
 
-  gretting.innerText = "";
   userNameInput.value = "";
   userLoginDiv.classList.remove("hidden");
   stickerFormDisplay.classList.add("hidden");
@@ -45,7 +44,9 @@ let userLocalSave = () => {
 };
 
 let greetingRender = () => {
-  gretting.innerText = `${userName}님 환영합니다~~~`;
+  gretting.innerHTML = `<i class="fa-solid fa-user"></i> ${
+    userName[0].toUpperCase() + userName.slice(1)
+  }`;
 
   userLoginDiv.classList.add("hidden");
 };
