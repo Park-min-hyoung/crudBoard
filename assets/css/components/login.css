@@ -84,7 +84,8 @@
   width: 100%;
 }
 
-.user-login__btn button {
+.user-login__btn button,
+.user-logout__btn button {
   width: 90px;
   height: 30px;
   border: none;
@@ -94,4 +95,29 @@
   box-shadow: 0 19px 38px rgba(220, 195, 205, 0.2),
     0 15px 12px rgba(220, 195, 205, 0.3);
   cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.user-login__btn button:hover,
+.user-logout__btn button:hover {
+  color: black;
+  background-color: wheat;
+  font-weight: 700;
+}
+
+.user-logout__btn {
+  width: 100%;
+  padding: 10px;
+  text-align: right;
+}
+
+.user-logout__btn button {
+  width: 150px;
+  height: 50px;
+  border-radius: 7px;
+  font-size: 17px;
+}
+
+.user-logout__btn button i {
+  margin-right: 5px;
 }

@@ -2,6 +2,7 @@ const userForm = document.querySelector("#user-form");
 const userLoginDiv = document.querySelector("#user-form .user-login");
 const userNameInput = document.querySelector("#user-form input[type=text]");
 const loginButton = document.querySelector("#user-form button");
+const logoutButtonDiv = document.querySelector("#user-form .user-logout__btn");
 const gretting = document.querySelector(".greeting");
 const stickerFormDisplay = document.querySelector("#board-form");
 const stickerBoardDisplay = document.querySelector(".board-container");
@@ -33,9 +34,10 @@ let logOut = ({ target }) => {
 
 let logoutButtonMake = () => {
   const logoutButton = document.createElement("button");
-  logoutButton.innerText = "로그아웃";
+  logoutButton.innerHTML = `<i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i> LOGOUT`;
+
   logoutButton.addEventListener("click", logOut);
-  userForm.append(logoutButton);
+  logoutButtonDiv.append(logoutButton);
 };
 
 let userLocalSave = () => {
