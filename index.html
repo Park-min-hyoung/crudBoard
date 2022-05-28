@@ -37,20 +37,16 @@
       </div>
     </form>
 
-    <form id="board-form" class="hidden">
-      <input
-        type="text"
-        required
-        placeholder="제목을 입력해주세요!"
-        style="display: block"
-      />
-      <textarea
-        required
-        rows="10"
-        cols="40"
-        placeholder="내용을 입력해주세요!"
-      ></textarea>
-      <button type="submit">작성</button>
+    <form id="board-form">
+      <div class="board-form-container">
+        <h2 class="board-form-container__title">Title</h2>
+        <input type="text" required />
+        <h2 class="board-form-container__content">Cotent</h2>
+        <textarea required rows="10" cols="40"></textarea>
+        <button type="submit">
+          <i class="fa-solid fa-note-sticky fa-lg"></i>Make Sticker
+        </button>
+      </div>
     </form>
     <div class="board-container hidden"></div>
 

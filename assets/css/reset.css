@@ -137,3 +137,13 @@ a {
 * {
   box-sizing: border-box;
 }
+
+input,
+textarea {
+  outline: none;
+  border: none;
+}
+
+button {
+  border: none;
+}
