@@ -25,7 +25,7 @@ let allRemoveSticker = () => {
 
 // by 민형, x버튼 누르면 스티커 삭제_220514
 let removeSticker = (event) => {
-  const rmSticker = event.target.parentElement.parentElement;
+  const rmSticker = event.target.parentElement;
   stickers = stickers.filter(
     (sticker) => sticker.id !== parseInt(rmSticker.id)
   );
@@ -38,8 +38,12 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
   toMakeSticker.insertAdjacentHTML(
     "beforeend",
     `
-      <div class="sticker-cotainer__user">${stickerUserName}</div>
-      <div class="sticker-cotainer__title">${stickerInfo.title}</div>
+      <div class="sticker-container__header">
+        <div class="sticker-cotainer__title">${stickerInfo.title}</div>
+        <div class="sticker-cotainer__user">${
+          stickerUserName[0].toUpperCase() + stickerUserName.slice(1)
+        }</div>
+      </div>
     `
   );
 
@@ -48,13 +52,13 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
   contentDiv.classList.add("sticker-cotainer__content");
 
   const updateButton = document.createElement("button");
-  updateButton.innerText = "내용 수정";
+  updateButton.innerHTML = `<i class="fa-solid fa-pencil fa-lg"></i>Update Content`;
   updateButton.classList.add("sticker-cotainer__update-btn");
 
   const updateTextArea = document.createElement("textarea");
   updateTextArea.placeholder = "수정할 내용을 입력해주세요";
-  updateTextArea.rows = 10;
-  updateTextArea.cols = 40;
+  updateTextArea.rows = 8;
+  updateTextArea.cols = 35;
   updateTextArea.classList.add("sticker-cotainer__update-text", HIDDEN);
 
   const confirmButton = document.createElement("button");
@@ -65,10 +69,11 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
   cancelButton.innerText = "취소";
   cancelButton.classList.add("sticker-cotainer__cancel-btn", HIDDEN);
 
-  const deleteSpan = document.createElement("span");
-  deleteSpan.insertAdjacentHTML(
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("sticker-cotainer__delete-btn");
+  deleteButton.insertAdjacentHTML(
     "beforeend",
-    `<i class="fa-solid fa-xmark fa-2x"></i>`
+    `<i class="fa-solid fa-xmark fa-lg"></i> Sticker Delete`
   );
 
   toMakeSticker.append(contentDiv);
@@ -76,7 +81,7 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
   toMakeSticker.append(updateTextArea);
   toMakeSticker.append(confirmButton);
   toMakeSticker.append(cancelButton);
-  toMakeSticker.append(deleteSpan);
+  toMakeSticker.append(deleteButton);
 
   let elementHiddenModify = () => {
     contentDiv.classList.toggle(HIDDEN);
@@ -106,18 +111,22 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
   updateButton.addEventListener("click", elementHiddenModify);
   confirmButton.addEventListener("click", updateStickerContent);
   cancelButton.addEventListener("click", elementHiddenModify);
-  deleteSpan.addEventListener("click", removeSticker);
+  deleteButton.addEventListener("click", removeSticker);
 
   return toMakeSticker;
 };
 
 let attachSticker = (stickerInfo) => {
+  // by 민형, 스티커를 적절하게 배치하기 위한 공간 생성위해 추가_220603
+  const stickersDiv = document.createElement("div");
+  stickersDiv.classList.add("board-container__stickers");
   const stickerDiv = document.createElement("div");
   stickerDiv.id = stickerInfo.id;
   stickerDiv.classList.add("board-container__sticker");
 
   const madeSticker = makeSticker(stickerDiv, stickerInfo);
-  stickerBoard.append(madeSticker);
+  stickersDiv.append(madeSticker);
+  stickerBoard.append(stickersDiv);
 };
 
 // by 민형, 사용자가 작성한 내용을 받아 처리_220512

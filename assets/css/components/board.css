@@ -59,10 +59,119 @@
 .board-container {
   display: flex;
   flex-wrap: wrap;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.board-container__stickers {
+  width: 25%;
+  display: flex;
+  justify-content: center;
 }
 
 .board-container__sticker {
   width: 300px;
   height: 300px;
-  background-color: yellow;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 30px;
+  font-weight: 700;
+  position: relative;
+}
+
+.sticker-container__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.sticker-cotainer__title {
+  font-size: 22px;
+}
+
+.sticker-cotainer__content {
+  font-weight: 400;
+}
+
+.sticker-cotainer__update-btn,
+.sticker-cotainer__delete-btn {
+  position: absolute;
+  bottom: 15px;
+
+  width: 130px;
+  height: 40px;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 19px 38px rgba(220, 195, 205, 0.2),
+    0 15px 12px rgba(220, 195, 205, 0.3);
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.sticker-cotainer__update-btn:hover,
+.sticker-cotainer__delete-btn:hover {
+  color: black;
+  background-color: wheat;
+}
+
+.sticker-cotainer__update-btn {
+  left: 15px;
+  background-color: #8430d5;
+}
+
+.sticker-cotainer__update-btn i {
+  margin-right: 5px;
+}
+
+.sticker-cotainer__delete-btn {
+  right: 15px;
+  background-color: #bd6939;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sticker-cotainer__delete-btn i {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.sticker-cotainer__update-text {
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  resize: none;
+  margin-bottom: 10px;
+}
+
+.sticker-cotainer__confirm-btn,
+.sticker-cotainer__cancel-btn {
+  position: absolute;
+  bottom: 70px;
+
+  width: 120px;
+  height: 30px;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 19px 38px rgba(220, 195, 205, 0.2),
+    0 15px 12px rgba(220, 195, 205, 0.3);
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.sticker-cotainer__confirm-btn:hover,
+.sticker-cotainer__cancel-btn:hover {
+  font-weight: 700;
+  color: black;
+  background-color: wheat;
+}
+
+.sticker-cotainer__confirm-btn {
+  left: 15px;
+  background-color: #8430d5;
+}
+
+.sticker-cotainer__cancel-btn {
+  right: 15px;
+  background-color: #bd6939;
 }
