@@ -37,7 +37,7 @@
       </div>
     </form>
 
-    <form id="board-form">
+    <form id="board-form" style="display: none">
       <div class="board-form-container">
         <h2 class="board-form-container__title">Title</h2>
         <input type="text" required />
@@ -48,20 +48,22 @@
         </button>
       </div>
     </form>
-    <div class="board-container hidden"></div>
 
-    <div id="no-search" class="hidden">
-      검색 내용과 일치하는 스티커를 찾지 못했습니다..
-    </div>
     <form id="search-form" class="hidden">
-      <input
-        required
-        type="text"
-        size="40"
-        placeholder="검색할 스티커의 제목 및 내용을 입력해주세요!"
-      />
-      <button type="submit">검색</button>
+      <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+      <input required type="text" size="40" placeholder="Search for Sticker" />
+      <button type="submit">Search</button>
     </form>
+    <div id="no-search" class="hidden">
+      <div class="no-search__img">
+        <img src="./assets/images/nosearch.png" alt="" />
+      </div>
+      <div class="no-search__text">
+        검색 내용과 일치하는 스티커를 찾지 못했습니다..
+      </div>
+    </div>
+
+    <div class="board-container hidden"></div>
 
     <script
       src="https://kit.fontawesome.com/a59a29274e.js"
