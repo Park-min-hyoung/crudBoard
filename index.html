@@ -32,38 +32,50 @@
           </div>
         </div>
       </div>
-      <div class="user-logout__btn">
-        <div class="greeting"></div>
-      </div>
     </form>
 
-    <form id="board-form" style="display: none">
-      <div class="board-form-container">
-        <h2 class="board-form-container__title">Title</h2>
-        <input type="text" required />
-        <h2 class="board-form-container__content">Cotent</h2>
-        <textarea required rows="10" cols="40"></textarea>
-        <button type="submit">
-          <i class="fa-solid fa-note-sticky fa-lg"></i>Make Sticker
-        </button>
-      </div>
-    </form>
+    <header class="user-header">
+      <div class="greeting"></div>
+    </header>
 
-    <form id="search-form" class="hidden">
-      <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-      <input required type="text" size="40" placeholder="Search for Sticker" />
-      <button type="submit">Search</button>
-    </form>
-    <div id="no-search" class="hidden">
-      <div class="no-search__img">
-        <img src="./assets/images/nosearch.png" alt="" />
-      </div>
-      <div class="no-search__text">
-        검색 내용과 일치하는 스티커를 찾지 못했습니다..
-      </div>
-    </div>
+    <aside>
+      <form id="board-form" style="display: none">
+        <div class="board-form-container">
+          <h2 class="board-form-container__title">Title</h2>
+          <input type="text" required />
+          <h2 class="board-form-container__content">Cotent</h2>
+          <textarea required rows="10" cols="40"></textarea>
+          <button type="submit">
+            <i class="fa-solid fa-note-sticky fa-lg"></i>Make Sticker
+          </button>
+        </div>
+      </form>
+    </aside>
 
-    <div class="board-container hidden"></div>
+    <main>
+      <section>
+        <form id="search-form" class="hidden">
+          <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+          <input
+            required
+            type="text"
+            size="40"
+            placeholder="Search for Sticker"
+          />
+          <button type="submit">Search</button>
+        </form>
+        <div id="no-search" class="hidden">
+          <div class="no-search__img">
+            <img src="./assets/images/nosearch.png" alt="" />
+          </div>
+          <div class="no-search__text">
+            검색 내용과 일치하는 스티커를 찾지 못했습니다..
+          </div>
+        </div>
+      </section>
+
+      <section class="board-container hidden"></section>
+    </main>
 
     <script
       src="https://kit.fontawesome.com/a59a29274e.js"

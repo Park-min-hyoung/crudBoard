@@ -2,7 +2,7 @@ const userForm = document.querySelector("#user-form");
 const userLoginDiv = document.querySelector("#user-form .user-login");
 const userNameInput = document.querySelector("#user-form input[type=text]");
 const loginButton = document.querySelector("#user-form button");
-const logoutButtonDiv = document.querySelector("#user-form .user-logout__btn");
+const logoutButtonDiv = document.querySelector(".user-header");
 const gretting = document.querySelector(".greeting");
 const stickerFormDisplay = document.querySelector("#board-form");
 const stickerBoardDisplay = document.querySelector(".board-container");

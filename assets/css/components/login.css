@@ -83,7 +83,7 @@
 }
 
 .user-login__btn button,
-.user-logout__btn button {
+.user-header button {
   width: 90px;
   height: 30px;
   background-color: #00aa87;
@@ -96,13 +96,13 @@
 }
 
 .user-login__btn button:hover,
-.user-logout__btn button:hover {
+.user-header button:hover {
   color: black;
   background-color: wheat;
   font-weight: 700;
 }
 
-.user-logout__btn {
+.user-header {
   width: 100%;
   padding: 10px;
   display: flex;
@@ -111,14 +111,14 @@
   background-color: white;
 }
 
-.user-logout__btn button {
+.user-header button {
   width: 150px;
   height: 50px;
   border-radius: 7px;
   font-size: 17px;
 }
 
-.user-logout__btn button i {
+.user-header button i {
   margin-right: 5px;
 }
 
