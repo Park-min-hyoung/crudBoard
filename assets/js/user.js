@@ -3,9 +3,12 @@ const userLoginDiv = document.querySelector("#user-form .user-login");
 const userNameInput = document.querySelector("#user-form input[type=text]");
 const loginButton = document.querySelector("#user-form button");
 const logoutButtonDiv = document.querySelector(".user-header");
-const gretting = document.querySelector(".greeting");
+const greeting = document.querySelector(".greeting");
 const stickerFormDisplay = document.querySelector("#board-form");
 const stickerBoardDisplay = document.querySelector(".board-container");
+const stickerBoardUserName = document.querySelectorAll(
+  ".sticker-cotainer__user"
+);
 const searchFormDisplay = document.querySelector("#search-form");
 
 let userName;
@@ -43,10 +46,13 @@ let userLocalSave = () => {
   localStorage.setItem(USER_KEY, JSON.stringify(userName));
 };
 
-let greetingRender = () => {
-  gretting.innerHTML = `<i class="fa-solid fa-user"></i> ${
+let usernameRender = () => {
+  greeting.innerHTML = `<i class="fa-solid fa-user"></i> ${
     userName[0].toUpperCase() + userName.slice(1)
   }`;
+  stickerBoardUserName.forEach((item) => {
+    item.innerHTML = `${userName[0].toUpperCase() + userName.slice(1)}`;
+  });
 
   userLoginDiv.classList.add("hidden");
 };
@@ -58,7 +64,7 @@ let receiveName = (event) => {
   stickerFormDisplay.classList.remove("hidden");
 
   logoutButtonMake();
-  greetingRender();
+  usernameRender();
   boardDisplay();
   userLocalSave();
 };
@@ -70,6 +76,6 @@ const bringLocalUser = localStorage.getItem(USER_KEY);
 if (bringLocalUser !== null) {
   userName = JSON.parse(bringLocalUser);
   logoutButtonMake();
-  greetingRender();
+  usernameRender();
   boardDisplay();
 }

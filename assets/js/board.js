@@ -5,7 +5,7 @@ const stickerBoard = document.querySelector(".board-container");
 const searchForm = document.querySelector("#search-form");
 const searchContent = document.querySelector("#search-form input[type=text]");
 const noSearchNotice = document.querySelector("#no-search");
-const stickerUserName = JSON.parse(localStorage.getItem("user"));
+let stickerUserName;
 
 const STIKER_KEY = "sticker";
 const HIDDEN = "hidden";
@@ -35,14 +35,15 @@ let removeSticker = (event) => {
 
 // by 민형, div 태그(빈 스티커)에 항목들 생성 및 기능 추가_220514
 let makeSticker = (toMakeSticker, stickerInfo) => {
+  // by 민형, sticker-cotainer__user 클래스 태그를 태그만 생성_220605
+  // const stickerUserName = JSON.parse(localStorage.getItem("user")); => 프로그램이 시작할 때 user key에 대한 value가 없으므로 null
+  // stickerUserName[0].toUpperCase() + stickerUserName.slice(1) => null에 있어 메소드를 적용하니 오류가 발생 그러므로 태그만 생성 후 user.js에서 처리
   toMakeSticker.insertAdjacentHTML(
     "beforeend",
     `
       <div class="sticker-container__header">
         <div class="sticker-cotainer__title">${stickerInfo.title}</div>
-        <div class="sticker-cotainer__user">${
-          stickerUserName[0].toUpperCase() + stickerUserName.slice(1)
-        }</div>
+        <div class="sticker-cotainer__user"></div>
       </div>
     `
   );
