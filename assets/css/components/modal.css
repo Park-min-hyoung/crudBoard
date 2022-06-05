@@ -1,0 +1,52 @@
+.modal-open__btn-wrap {
+  width: 100%;
+  text-align: right;
+}
+
+.modal-open__btn {
+  background-color: #fae100;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 17px;
+  margin-top: 10px;
+  margin-right: 10px;
+  transition: all 0.5s ease;
+}
+
+.modal-open__btn:hover {
+  color: #fae100;
+  background-color: black;
+}
+
+.modal-open__btn i {
+  margin-right: 5px;
+}
+
+.modal-overlay {
+  background-color: black;
+  opacity: 0.4;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: 98;
+}
+
+.modal-content {
+  z-index: 99;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-close__icon {
+  position: fixed;
+  top: 30px;
+  left: 20px;
+  z-index: 99;
+  color: white;
+}
