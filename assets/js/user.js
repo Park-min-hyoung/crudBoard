@@ -3,6 +3,7 @@ const userLoginDiv = document.querySelector("#user-form .user-login");
 const userNameInput = document.querySelector("#user-form input[type=text]");
 const loginButton = document.querySelector("#user-form button");
 const logoutButtonDiv = document.querySelector(".user-header");
+const logoutButton = document.querySelector(".user-header button");
 const greeting = document.querySelector(".greeting");
 const stickerFormDisplay = document.querySelector("#board-form");
 const stickerBoardDisplay = document.querySelector(".board-container");
@@ -23,8 +24,6 @@ let boardDisplay = () => {
 };
 
 let logOut = ({ target }) => {
-  // by 민형, 여기서 target은 로그아웃 버튼_220515
-  target.remove();
   localStorage.removeItem(USER_KEY);
 
   userNameInput.value = "";
@@ -32,14 +31,6 @@ let logOut = ({ target }) => {
   stickerFormDisplay.classList.add("hidden");
 
   boardDisplay();
-};
-
-let logoutButtonMake = () => {
-  const logoutButton = document.createElement("button");
-  logoutButton.innerHTML = `<i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i> LOGOUT`;
-
-  logoutButton.addEventListener("click", logOut);
-  logoutButtonDiv.append(logoutButton);
 };
 
 let userLocalSave = () => {
@@ -63,19 +54,18 @@ let receiveName = (event) => {
   userName = userNameInput.value;
   stickerFormDisplay.classList.remove("hidden");
 
-  logoutButtonMake();
   usernameRender();
   boardDisplay();
   userLocalSave();
 };
 
 userForm.addEventListener("submit", receiveName);
+logoutButton.addEventListener("click", logOut);
 
 // by 민형, program 시작_220515
 const bringLocalUser = localStorage.getItem(USER_KEY);
 if (bringLocalUser !== null) {
   userName = JSON.parse(bringLocalUser);
-  logoutButtonMake();
   usernameRender();
   boardDisplay();
 }
