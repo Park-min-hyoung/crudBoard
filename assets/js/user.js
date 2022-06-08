@@ -2,10 +2,10 @@ const userForm = document.querySelector("#user-form");
 const userLoginDiv = document.querySelector("#user-form .user-login");
 const userNameInput = document.querySelector("#user-form input[type=text]");
 const loginButton = document.querySelector("#user-form button");
-const logoutButtonDiv = document.querySelector(".user-header");
+const boardHeader = document.querySelector(".user-header");
+const modalButton = document.querySelector("aside");
 const logoutButton = document.querySelector(".user-header button");
 const greeting = document.querySelector(".greeting");
-const stickerFormDisplay = document.querySelector("#board-form");
 const stickerBoardDisplay = document.querySelector(".board-container");
 const stickerBoardUserName = document.querySelectorAll(
   ".sticker-cotainer__user"
@@ -18,8 +18,11 @@ const USER_KEY = "user";
 
 // by 민형, 로그인 유무에 따라 board 정보 랜더링_220515
 let boardDisplay = () => {
+  // by 민형, 로그인을 하면 보이도록 처리(Header, Modal, Search, Board)_220608
   stickerBoardDisplay.classList.toggle("hidden");
   searchFormDisplay.classList.toggle("hidden");
+  boardHeader.classList.toggle("hidden");
+  modalButton.classList.toggle("hidden");
 };
 
 let logOut = ({ target }) => {
@@ -27,7 +30,6 @@ let logOut = ({ target }) => {
 
   userNameInput.value = "";
   userLoginDiv.classList.remove("hidden");
-  stickerFormDisplay.classList.add("hidden");
 
   // by 민형, board.js에서 변수 및 메소드 가져와서 사용, 나중에 export로 수정_220606
   // 검색 후 로그아웃 하고 다시 로그인 하면 검색 결과가 그대로 남아있는 문제 발생
@@ -59,7 +61,6 @@ let usernameRender = () => {
 let receiveName = (event) => {
   event.preventDefault();
   userName = userNameInput.value;
-  stickerFormDisplay.classList.remove("hidden");
 
   usernameRender();
   boardDisplay();
