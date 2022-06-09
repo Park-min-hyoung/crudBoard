@@ -76,7 +76,6 @@
   border-radius: 10px;
   padding: 15px;
   margin-bottom: 30px;
-  font-weight: 700;
   position: relative;
 }
 
@@ -84,14 +83,11 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  font-weight: 700;
 }
 
 .sticker-cotainer__title {
   font-size: 22px;
-}
-
-.sticker-cotainer__content {
-  font-weight: 400;
 }
 
 .sticker-cotainer__update-btn,

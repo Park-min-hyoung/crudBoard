@@ -39,6 +39,15 @@
   width: 30vw;
 }
 
+.no-search__img {
+  text-align: center;
+}
+
+.no-search__img img {
+  width: 300px;
+  height: 300px;
+}
+
 .no-search__text {
   margin: 20px auto 0 auto;
   background-color: white;
@@ -49,13 +58,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.no-search__img {
-  text-align: center;
-}
-
-.no-search__img img {
-  width: 300px;
-  height: 300px;
 }
