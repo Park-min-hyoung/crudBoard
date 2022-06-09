@@ -1,7 +1,6 @@
-const userForm = document.querySelector("#user-form");
-const userLoginDiv = document.querySelector("#user-form .user-login");
-const userNameInput = document.querySelector("#user-form input[type=text]");
-const loginButton = document.querySelector("#user-form button");
+const userForm = document.querySelector(".user-form");
+const userNameInput = document.querySelector(".user-form input[type=text]");
+const loginButton = document.querySelector(".user-form button");
 const boardHeader = document.querySelector(".user-header");
 const modalButton = document.querySelector("aside");
 const logoutButton = document.querySelector(".user-header button");
@@ -29,7 +28,7 @@ let logOut = ({ target }) => {
   localStorage.removeItem(USER_KEY);
 
   userNameInput.value = "";
-  userLoginDiv.classList.remove("hidden");
+  userForm.classList.remove("hidden");
 
   // by 민형, board.js에서 변수 및 메소드 가져와서 사용, 나중에 export로 수정_220606
   // 검색 후 로그아웃 하고 다시 로그인 하면 검색 결과가 그대로 남아있는 문제 발생
@@ -53,8 +52,7 @@ let usernameRender = () => {
   stickerBoardUserName.forEach((item) => {
     item.innerHTML = `${userName[0].toUpperCase() + userName.slice(1)}`;
   });
-
-  userLoginDiv.classList.add("hidden");
+  userForm.classList.add("hidden");
 };
 
 // by 민형, 로그인 할 떄_220515
