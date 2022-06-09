@@ -5,22 +5,24 @@ const modalCloseIcon = document.querySelector(".modal-close__icon");
 const makeStickerButton = document.querySelector(
   ".board-form-container button"
 );
-const modalContentTitle = document.querySelector(".board-form-container input");
-const modalContentTextArea = document.querySelector(
+const formInputTitle = document.querySelector(".board-form-container input");
+const formInputTextArea = document.querySelector(
   ".board-form-container textarea"
 );
 
 function openModal() {
+  // board.js의 HIDDEN 사용
   modal.classList.remove(HIDDEN);
 }
 
 function closeModal() {
+  // board.js의 HIDDEN 사용
   modal.classList.add(HIDDEN);
 }
 
 // by 민형, 스티커 생성 폼에 제목과 내용을 작성했을 때만 closeModal 호출_220605
-function makebuttonCloseModal() {
-  if (modalContentTitle.value !== "" && modalContentTextArea.value !== "") {
+function isValueCloseModal() {
+  if (formInputTitle.value !== "" && formInputTextArea.value !== "") {
     closeModal();
   }
 }
@@ -28,4 +30,4 @@ function makebuttonCloseModal() {
 modalOpenButton.addEventListener("click", openModal);
 modalOverlay.addEventListener("click", closeModal);
 modalCloseIcon.addEventListener("click", closeModal);
-makeStickerButton.addEventListener("click", makebuttonCloseModal);
+makeStickerButton.addEventListener("click", isValueCloseModal);
