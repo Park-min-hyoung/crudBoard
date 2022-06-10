@@ -1,22 +1,22 @@
 const stickerProduceForm = document.querySelector("#board-form");
-const stickerTitle = document.querySelector("#board-form input[type=text]");
-const stickerContent = document.querySelector("#board-form textarea");
+export const stickerTitle = document.querySelector("#board-form input");
+export const stickerContent = document.querySelector("#board-form textarea");
 const stickerBoard = document.querySelector(".board-container");
 const searchForm = document.querySelector("#search-form");
 const searchContent = document.querySelector("#search-form input[type=text]");
-const noSearchNotice = document.querySelector("#no-search");
+export const noSearchNotice = document.querySelector("#no-search");
 
 const STIKER_KEY = "sticker";
-const HIDDEN = "hidden";
+export const HIDDEN = "hidden";
 
-let stickers = [];
+export let stickers = [];
 
 let stickerLocalSave = () => {
   localStorage.setItem(STIKER_KEY, JSON.stringify(stickers));
 };
 
 // by 민형, 게시판에 있는 모든 스티커 삭제_220514
-let allRemoveSticker = () => {
+export let allRemoveSticker = () => {
   while (stickerBoard.hasChildNodes()) {
     stickerBoard.removeChild(stickerBoard.firstChild);
   }
@@ -116,7 +116,7 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
   return toMakeSticker;
 };
 
-let attachSticker = (stickerInfo) => {
+export let attachSticker = (stickerInfo) => {
   // by 민형, 스티커를 적절하게 배치하기 위한 공간 생성위해 추가_220603
   const stickersDiv = document.createElement("div");
   stickersDiv.classList.add("board-container__stickers");
@@ -160,7 +160,7 @@ let searchSticker = (event) => {
   // by 민형, 사용자가 입력한 정보가 포함된 스티거가 한개라도 있다면_220516
   if (searchResultStickers.length > 0) {
     noSearchNotice.classList.add(HIDDEN);
-    // by 민형, 검색 정보가 포함된 스티커들을 게시판에 붙이기_220516
+    // by 민형, 검색 정보가 포함된 스티커들을 게시판에 붙이기_220610
     searchResultStickers.forEach(attachSticker);
   } else {
     noSearchNotice.classList.remove(HIDDEN);

@@ -1,6 +1,7 @@
+import * as importBoard from "./board.js";
+
 const userForm = document.querySelector(".user-form");
 const userNameInput = document.querySelector(".user-form input[type=text]");
-const loginButton = document.querySelector(".user-form button");
 const boardHeader = document.querySelector(".user-header");
 const modalButton = document.querySelector("aside");
 const headerUserName = document.querySelector(".greeting");
@@ -12,16 +13,15 @@ let userName;
 
 const USER_KEY = "user";
 
-// by 민형, 로그인 유무에 따라 board 정보 랜더링 여부 결정_220515
+// by 민형, 로그인 유무에 따라 board 정보 랜더링 여부 결정_220611
+// board.js에서 HIDDEN 가져와서 사용
 let boardDisplay = () => {
-  // by 민형, 로그인을 하면 보이도록 처리(Header, Modal, Search, Board)_220608
   // 로그인 떄는 hidden을 추가(안보이게)하고 로그아웃 때는 hidden을 제거(보이게)
-  userForm.classList.toggle("hidden");
-  // board.js에서 HIDDEN 가져와서 사용할 수 있도록 하기!!
+  userForm.classList.toggle(importBoard.HIDDEN);
   // 로그인 떄는 hidden을 제거(보이게)하고 로그아웃 때는 hidden을 추가(안보이게)
-  boardHeader.classList.toggle("hidden");
-  modalButton.classList.toggle("hidden");
-  mainPage.classList.toggle("hidden");
+  boardHeader.classList.toggle(importBoard.HIDDEN);
+  modalButton.classList.toggle(importBoard.HIDDEN);
+  mainPage.classList.toggle(importBoard.HIDDEN);
 };
 
 let logOut = () => {
@@ -32,9 +32,9 @@ let logOut = () => {
   // 검색 후 로그아웃 하고 다시 로그인 하면 검색 결과가 그대로 남아있는 문제 발생
   // 검색 결과 제거 작업에 있어 검색 결과가 있을 때는 allRemoveSticker(), 결과가 없을 때는 그림 제거
   // 스티커 또는 사진 제거 후 다시 스티커 붙이기
-  allRemoveSticker();
-  noSearchNotice.classList.add(HIDDEN);
-  stickers.forEach(attachSticker);
+  importBoard.allRemoveSticker();
+  importBoard.noSearchNotice.classList.add(importBoard.HIDDEN);
+  importBoard.stickers.forEach(importBoard.attachSticker);
 
   boardDisplay();
 };
