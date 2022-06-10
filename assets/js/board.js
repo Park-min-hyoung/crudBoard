@@ -1,11 +1,10 @@
-const stickerForm = document.querySelector("#board-form");
+const stickerProduceForm = document.querySelector("#board-form");
 const stickerTitle = document.querySelector("#board-form input[type=text]");
 const stickerContent = document.querySelector("#board-form textarea");
 const stickerBoard = document.querySelector(".board-container");
 const searchForm = document.querySelector("#search-form");
 const searchContent = document.querySelector("#search-form input[type=text]");
 const noSearchNotice = document.querySelector("#no-search");
-let stickerUserName;
 
 const STIKER_KEY = "sticker";
 const HIDDEN = "hidden";
@@ -93,7 +92,7 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
   };
 
   let updateStickerContent = ({ target }) => {
-    updateStickerDiv = target.parentElement;
+    const updateStickerDiv = target.parentElement;
 
     // by 민형, 모든 스티커 삭제_220513
     allRemoveSticker();
@@ -148,27 +147,27 @@ let receiveValue = (event) => {
 
 let searchSticker = (event) => {
   event.preventDefault();
-  // by 민형, 검색 시에 게시물 작성 폼 제거_220516
-  stickerForm.classList.add("hidden");
   const findStickerContent = searchContent.value;
   searchContent.value = "";
 
-  searchStickerArr = stickers.filter(
+  const searchResultStickers = stickers.filter(
     (sticker) =>
-      sticker.content.includes(findStickerContent) ||
-      sticker.title.includes(findStickerContent)
+      // by 민형, 검색 정보에 해당하는 제목과 내용이 있다면_220610
+      sticker.title.includes(findStickerContent) ||
+      sticker.content.includes(findStickerContent)
   );
   allRemoveSticker();
   // by 민형, 사용자가 입력한 정보가 포함된 스티거가 한개라도 있다면_220516
-  if (searchStickerArr.length > 0) {
+  if (searchResultStickers.length > 0) {
     noSearchNotice.classList.add(HIDDEN);
-    searchStickerArr.forEach(attachSticker);
+    // by 민형, 검색 정보가 포함된 스티커들을 게시판에 붙이기_220516
+    searchResultStickers.forEach(attachSticker);
   } else {
     noSearchNotice.classList.remove(HIDDEN);
   }
 };
 
-stickerForm.addEventListener("submit", receiveValue);
+stickerProduceForm.addEventListener("submit", receiveValue);
 searchForm.addEventListener("submit", searchSticker);
 
 // by 민형, program start_220512
