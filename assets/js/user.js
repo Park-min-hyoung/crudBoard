@@ -3,32 +3,30 @@ const userNameInput = document.querySelector(".user-form input[type=text]");
 const loginButton = document.querySelector(".user-form button");
 const boardHeader = document.querySelector(".user-header");
 const modalButton = document.querySelector("aside");
+const headerUserName = document.querySelector(".greeting");
 const logoutButton = document.querySelector(".user-header button");
-const greeting = document.querySelector(".greeting");
-const stickerBoardDisplay = document.querySelector(".board-container");
-const stickerBoardUserName = document.querySelectorAll(
-  ".sticker-cotainer__user"
-);
-const searchFormDisplay = document.querySelector("#search-form");
+const mainPage = document.querySelector("main");
+const stickerUserName = document.querySelectorAll(".sticker-cotainer__user");
 
 let userName;
 
 const USER_KEY = "user";
 
-// by 민형, 로그인 유무에 따라 board 정보 랜더링_220515
+// by 민형, 로그인 유무에 따라 board 정보 랜더링 여부 결정_220515
 let boardDisplay = () => {
   // by 민형, 로그인을 하면 보이도록 처리(Header, Modal, Search, Board)_220608
-  stickerBoardDisplay.classList.toggle("hidden");
-  searchFormDisplay.classList.toggle("hidden");
+  // 로그인 떄는 hidden을 추가(안보이게)하고 로그아웃 때는 hidden을 제거(보이게)
+  userForm.classList.toggle("hidden");
+  // board.js에서 HIDDEN 가져와서 사용할 수 있도록 하기!!
+  // 로그인 떄는 hidden을 제거(보이게)하고 로그아웃 때는 hidden을 추가(안보이게)
   boardHeader.classList.toggle("hidden");
   modalButton.classList.toggle("hidden");
+  mainPage.classList.toggle("hidden");
 };
 
-let logOut = ({ target }) => {
+let logOut = () => {
   localStorage.removeItem(USER_KEY);
-
   userNameInput.value = "";
-  userForm.classList.remove("hidden");
 
   // by 민형, board.js에서 변수 및 메소드 가져와서 사용, 나중에 export로 수정_220606
   // 검색 후 로그아웃 하고 다시 로그인 하면 검색 결과가 그대로 남아있는 문제 발생
@@ -46,13 +44,13 @@ let userLocalSave = () => {
 };
 
 let usernameRender = () => {
-  greeting.innerHTML = `<i class="fa-solid fa-user"></i> ${
+  headerUserName.innerHTML = `<i class="fa-solid fa-user"></i> ${
     userName[0].toUpperCase() + userName.slice(1)
   }`;
-  stickerBoardUserName.forEach((item) => {
-    item.innerHTML = `${userName[0].toUpperCase() + userName.slice(1)}`;
+  // by 민형, 로그인 하기전에 이미 스티커가 붙여지기 때문에 로그인 시 작성자 이름 부여_220610
+  stickerUserName.forEach((stickerUser) => {
+    stickerUser.innerHTML = `${userName[0].toUpperCase() + userName.slice(1)}`;
   });
-  userForm.classList.add("hidden");
 };
 
 // by 민형, 로그인 할 떄_220515
