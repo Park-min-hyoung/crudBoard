@@ -1,21 +1,38 @@
-const images = [
-  "../assets/images/1.jpg",
-  "../assets/images/2.jpg",
-  "../assets/images/3.jpg",
-  "../assets/images/4.jpg",
-  "../assets/images/5.jpg",
-  "../assets/images/6.jpg",
-  "../assets/images/7.jpg",
-  "../assets/images/8.jpg",
-  "../assets/images/9.jpg",
-  "../assets/images/10.jpg",
-];
+class imageProduce {
+  constructor() {
+    this.imageURL = "/assets/data/data.json";
+    this.setInitVariables();
+    this.setInitData(this.imageURL);
+  }
 
-const choseImage = images[Math.floor(Math.random() * images.length)];
+  setInitVariables() {
+    this.bgImage = document.createElement("img");
+  }
 
-const bgImage = document.createElement("img");
+  setInitData(imageURL) {
+    this.getData(imageURL, this.setBackgroundImg.bind(this));
+  }
 
-bgImage.src = `${choseImage}`;
-bgImage.classList.add("background-img");
+  getData(imageURL, fn) {
+    const oReq = new XMLHttpRequest();
 
-document.body.appendChild(bgImage);
+    oReq.addEventListener("load", () => {
+      const imageDataList = JSON.parse(oReq.responseText).body;
+      fn(imageDataList);
+    });
+
+    oReq.open("GET", imageURL);
+    oReq.send();
+  }
+
+  setBackgroundImg(imageList) {
+    const choseImage =
+      imageList[Math.floor(Math.random() * imageList.length)].url;
+    // by 민형, choseImage가 문자열이므로 Template 사용안해도 됨_220612
+    this.bgImage.src = choseImage;
+    this.bgImage.classList.add("background-img");
+    document.body.append(this.bgImage);
+  }
+}
+
+new imageProduce();
