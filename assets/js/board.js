@@ -23,8 +23,10 @@ export let allRemoveSticker = () => {
 };
 
 // by 민형, x버튼 누르면 스티커 삭제_220514
-let removeSticker = (event) => {
-  const rmSticker = event.target.parentElement;
+let removeSticker = ({ target }) => {
+  // by 민형, Destructuring 문법 사용_220614
+  // PointerEvent 객체의 target(HTMLElement)만 가져와서 사용
+  const rmSticker = target.parentElement;
   stickers = stickers.filter(
     (sticker) => sticker.id !== parseInt(rmSticker.id)
   );
@@ -96,6 +98,7 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
 
     // by 민형, 모든 스티커 삭제_220513
     allRemoveSticker();
+    // by 민형, for ~ of 사용_220616
     for (let sticker of stickers) {
       if (sticker.id === parseInt(updateStickerDiv.id)) {
         sticker.content = updateTextArea.value;
