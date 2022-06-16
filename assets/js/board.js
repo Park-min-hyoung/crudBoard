@@ -31,7 +31,7 @@ let removeSticker = ({ target }) => {
     (sticker) => sticker.id !== parseInt(rmSticker.id)
   );
   stickerLocalSave(stickers);
-  rmSticker.remove();
+  rmSticker.parentElement.remove();
 };
 
 // by 민형, div 태그(빈 스티커)에 항목들 생성 및 기능 추가_220514
