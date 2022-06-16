@@ -11,6 +11,19 @@ export const HIDDEN = "hidden";
 
 export let stickers = [];
 
+let stickerUserNaemRender = () => {
+  const stickerUser = document.querySelectorAll(".sticker-cotainer__user");
+  if (JSON.parse(localStorage.getItem("user")) !== null) {
+    let sticerkUserName = JSON.parse(localStorage.getItem("user"));
+
+    stickerUser.forEach((stickerUserName) => {
+      stickerUserName.innerText = `${
+        sticerkUserName[0].toUpperCase() + sticerkUserName.slice(1)
+      }`;
+    });
+  }
+};
+
 let stickerLocalSave = () => {
   localStorage.setItem(STIKER_KEY, JSON.stringify(stickers));
 };
@@ -106,6 +119,7 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
         elementHiddenModify();
         // by 민형, 스티커 내용 수정 후 다시 스티커 붙이기_220513
         stickers.forEach(attachSticker);
+        stickerUserNaemRender();
         break;
       }
     }
@@ -130,6 +144,7 @@ export let attachSticker = (stickerInfo) => {
   const madeSticker = makeSticker(stickerDiv, stickerInfo);
   stickersDiv.append(madeSticker);
   stickerBoard.append(stickersDiv);
+  stickerUserNaemRender();
 };
 
 // by 민형, 사용자가 작성한 내용을 받아 처리_220512
