@@ -7,7 +7,7 @@ const modalButton = document.querySelector("aside");
 const headerUserName = document.querySelector(".greeting");
 const logoutButton = document.querySelector(".user-header button");
 const mainPage = document.querySelector("main");
-const stickerUserName = document.querySelectorAll(".sticker-cotainer__user");
+const stickerUserNames = document.querySelectorAll(".sticker-cotainer__user");
 
 let userName;
 
@@ -48,8 +48,10 @@ let usernameRender = () => {
     userName[0].toUpperCase() + userName.slice(1)
   }`;
   // by 민형, 로그인 하기전에 이미 스티커가 붙여지기 때문에 로그인 시 작성자 이름 부여_220610
-  stickerUserName.forEach((stickerUser) => {
-    stickerUser.innerHTML = `${userName[0].toUpperCase() + userName.slice(1)}`;
+  stickerUserNames.forEach((stickerUserName) => {
+    stickerUserName.innerHTML = `${
+      userName[0].toUpperCase() + userName.slice(1)
+    }`;
   });
 };
 
