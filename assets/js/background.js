@@ -1,6 +1,7 @@
 class imageProduce {
   constructor() {
-    this.imageURL = "/assets/data/data.json";
+    this.imageURL =
+      "https://raw.githubusercontent.com/Park-min-hyoung/crudBoard/master/assets/data/data.json";
     this.setInitVariables();
     this.setInitData(this.imageURL);
   }
