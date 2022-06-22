@@ -1,5 +1,6 @@
 class imageProduce {
   constructor() {
+    // by 민형, json 파일이(raw 버튼)나 jpg(download 버튼)도 GitHub에서 가져옴으로써 정상적으로 사용할 수 있음_220619
     this.imageURL =
       "https://raw.githubusercontent.com/Park-min-hyoung/crudBoard/master/assets/data/data.json";
     this.setInitVariables();

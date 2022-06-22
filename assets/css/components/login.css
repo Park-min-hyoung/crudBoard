@@ -102,6 +102,12 @@
   font-weight: 700;
 }
 
+.user-login__avoid-blanks {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .user-header {
   width: 100%;
   padding: 10px;
