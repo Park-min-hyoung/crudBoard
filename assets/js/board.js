@@ -11,10 +11,10 @@ export const HIDDEN = "hidden";
 
 export let stickers = [];
 
-let stickerUserNaemRender = () => {
+const stickerUserNaemRender = () => {
   const stickerUser = document.querySelectorAll(".sticker-cotainer__user");
   if (JSON.parse(localStorage.getItem("user")) !== null) {
-    let sticerkUserName = JSON.parse(localStorage.getItem("user"));
+    const sticerkUserName = JSON.parse(localStorage.getItem("user"));
 
     stickerUser.forEach((stickerUserName) => {
       stickerUserName.innerText = `${
@@ -24,19 +24,19 @@ let stickerUserNaemRender = () => {
   }
 };
 
-let stickerLocalSave = () => {
+const stickerLocalSave = () => {
   localStorage.setItem(STIKER_KEY, JSON.stringify(stickers));
 };
 
 // by 민형, 게시판에 있는 모든 스티커 삭제_220514
-export let allRemoveSticker = () => {
+export const allRemoveSticker = () => {
   while (stickerBoard.hasChildNodes()) {
     stickerBoard.removeChild(stickerBoard.firstChild);
   }
 };
 
 // by 민형, x버튼 누르면 스티커 삭제_220514
-let removeSticker = ({ target }) => {
+const removeSticker = ({ target }) => {
   // by 민형, Destructuring 문법 사용_220614
   // PointerEvent 객체의 target(HTMLElement)만 가져와서 사용
   const rmSticker = target.parentElement;
@@ -48,7 +48,7 @@ let removeSticker = ({ target }) => {
 };
 
 // by 민형, div 태그(빈 스티커)에 항목들 생성 및 기능 추가_220514
-let makeSticker = (toMakeSticker, stickerInfo) => {
+const makeSticker = (toMakeSticker, stickerInfo) => {
   // by 민형, sticker-cotainer__user 클래스 태그를 태그만 생성_220605
   // const stickerUserName = JSON.parse(localStorage.getItem("user")); => 프로그램이 시작할 때 user key에 대한 value가 없으므로 null
   // stickerUserName[0].toUpperCase() + stickerUserName.slice(1) => null에 있어 메소드를 적용하니 오류가 발생 그러므로 태그만 생성 후 user.js에서 처리
@@ -98,7 +98,7 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
   toMakeSticker.append(cancelButton);
   toMakeSticker.append(deleteButton);
 
-  let elementHiddenModify = () => {
+  const elementHiddenModify = () => {
     contentDiv.classList.toggle(HIDDEN);
     updateButton.classList.toggle(HIDDEN);
     updateTextArea.classList.toggle(HIDDEN);
@@ -106,13 +106,13 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
     cancelButton.classList.toggle(HIDDEN);
   };
 
-  let updateStickerContent = ({ target }) => {
+  const updateStickerContent = ({ target }) => {
     const updateStickerDiv = target.parentElement;
 
     // by 민형, 모든 스티커 삭제_220513
     allRemoveSticker();
     // by 민형, for ~ of 사용_220616
-    for (let sticker of stickers) {
+    for (const sticker of stickers) {
       if (sticker.id === parseInt(updateStickerDiv.id)) {
         sticker.content = updateTextArea.value;
         stickerLocalSave();
@@ -133,7 +133,7 @@ let makeSticker = (toMakeSticker, stickerInfo) => {
   return toMakeSticker;
 };
 
-export let attachSticker = (stickerInfo) => {
+export const attachSticker = (stickerInfo) => {
   // by 민형, 스티커를 적절하게 배치하기 위한 공간 생성위해 추가_220603
   const stickersDiv = document.createElement("div");
   stickersDiv.classList.add("board-container__stickers");
@@ -148,7 +148,7 @@ export let attachSticker = (stickerInfo) => {
 };
 
 // by 민형, 사용자가 작성한 내용을 받아 처리_220512
-let receiveValue = (event) => {
+const receiveValue = (event) => {
   event.preventDefault();
   const stickerObj = {
     title: stickerTitle.value,
@@ -163,7 +163,7 @@ let receiveValue = (event) => {
   attachSticker(stickerObj);
 };
 
-let searchSticker = (event) => {
+const searchSticker = (event) => {
   event.preventDefault();
   const findStickerContent = searchContent.value;
   searchContent.value = "";

@@ -8,17 +8,17 @@ const makeStickerButton = document.querySelector(
   ".board-form-container button"
 );
 
-let openModal = () => {
+const openModal = () => {
   // by 민형, board.js의 HIDDEN 사용_220611
   modal.classList.remove(importBoard.HIDDEN);
 };
 
-let closeModal = () => {
+const closeModal = () => {
   modal.classList.add(importBoard.HIDDEN);
 };
 
 // by 민형, 스티커 생성 폼에 제목과 내용을 작성했을 때만 closeModal 호출_220605
-let isValueCloseModal = () => {
+const isValueCloseModal = () => {
   if (
     importBoard.stickerTitle.value !== "" &&
     importBoard.stickerContent.value !== ""
