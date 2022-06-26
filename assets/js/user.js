@@ -63,6 +63,7 @@ const receiveName = (event) => {
   event.preventDefault();
   userName = userNameInput.value;
   // by 민형, 사용자가 입력한 id에 공백이 포함되어 있다면 다시 입력받도록 한다_220622
+  // 기존의 입력 받은 아이디와 그 아이디의 공백을 제거한 것을 비교
   if (userName.replace(/\s/g, "") !== userName) {
     avoidBlanksNotice.classList.remove(importBoard.HIDDEN);
     return;

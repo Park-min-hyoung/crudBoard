@@ -8,6 +8,7 @@ export const noSearchNotice = document.querySelector("#no-search");
 
 const STIKER_KEY = "sticker";
 export const HIDDEN = "hidden";
+const ALLOW_TEXT_LENGTH = 176;
 
 export let stickers = [];
 
@@ -185,8 +186,19 @@ const searchSticker = (event) => {
   }
 };
 
+const letterLengthCheck = () => {
+  // by 민형, 키보드에서 손을 땟을 시 textarea의 글자 수 check_220626
+  let textAreaLength = stickerContent.value.length;
+  if (textAreaLength > ALLOW_TEXT_LENGTH) {
+    // by 민형, 사용자가 입력한 글자 수가 허용 글자 수보다 크다면 허용 된 글자수 까지의 글자만 렌더링_220626
+    const allowText = stickerContent.value.slice(0, ALLOW_TEXT_LENGTH);
+    stickerContent.value = allowText;
+  }
+};
+
 stickerProduceForm.addEventListener("submit", receiveValue);
 searchForm.addEventListener("submit", searchSticker);
+stickerContent.onkeyup = letterLengthCheck;
 
 // by 민형, program start_220512
 const bringLocalSticker = localStorage.getItem(STIKER_KEY);

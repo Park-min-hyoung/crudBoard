@@ -90,6 +90,10 @@
   font-size: 22px;
 }
 
+.sticker-cotainer__content {
+  word-break: break-all;
+}
+
 .sticker-cotainer__update-btn,
 .sticker-cotainer__delete-btn {
   position: absolute;
